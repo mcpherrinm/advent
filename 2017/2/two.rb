@@ -16,6 +16,7 @@ input = [[86, 440, 233, 83, 393, 420, 228, 491, 159, 13, 110, 135, 97, 238, 92, 
 [3111, 2857, 2312, 3230, 149, 3082, 408, 1148, 2428, 134, 147, 620, 128, 157, 492, 2879]]
 
 checksum = 0
+checksum2 = 0
 input.each do |row|
 	max = 0
 	min = 9999
@@ -27,12 +28,15 @@ input.each do |row|
 			min = elt
 		end
 	end
-	puts "max is"
-	puts max
-	puts "min is"
-	puts min
 	checksum += (max-min)
+	row.each do |big|
+	  row.each do |little|
+		if big > little && (big % little == 0)
+			checksum2 += big / little
+		end
+	  end
+	end
 end
 
-puts "Final checksum"
 puts checksum
+puts checksum2
